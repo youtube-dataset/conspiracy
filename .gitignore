@@ -1,5 +1,12 @@
-./data
-./.lancedb
-./.vscode
-./.venv
-./.env
+# Environment variables
+.env
+
+# Python virtual environment
+.venv/
+
+# IDE files
+.vscode/
+
+# Local databases and data folders
+.lancedb/
+data/
