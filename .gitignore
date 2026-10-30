@@ -2,4 +2,4 @@
 ./.lancedb
 ./.vscode
 ./.venv
-./rag/.env
+./.env
