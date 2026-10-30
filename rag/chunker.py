@@ -1,5 +1,4 @@
 import json
-
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def return_conspiracy_theories_titles():
@@ -10,22 +9,9 @@ def return_conspiracy_theories_titles():
 
     return [d["title"] for d in data]
 
-
-def chunk_titles(titles=None):
+def chunk_titles(chunk_size: int = 100, chunk_overlap: int = 20):
     titles = return_conspiracy_theories_titles()
+    splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    return splitter.create_documents(titles)
 
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=100,
-        chunk_overlap=0
-    )
-
-    # create_documents splits the list of title strings into LangChain Document chunks
-    chunks = text_splitter.create_documents(titles)
-    return chunks
-
-
-if __name__ == "__main__":
-    chunks = chunk_titles()
-    print(f"Total chunks created: {len(chunks)}")
-    for i, chunk in enumerate(chunks[:5]):
-        print(f"Chunk {i+1}: {chunk.page_content}")
+print(chunk_titles())
