@@ -10,10 +10,8 @@ load_dotenv()
 pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
 
 def pinecone_index():
-    # Note: Index names must use hyphens instead of underscores
     index_name = "conspiracy-theories-vector-index"
     
-    # (Optional) Check if index already exists to avoid creation errors on re-runs
     existing_indexes = [idx.name for idx in pc.list_indexes()]
     if index_name not in existing_indexes:
         pc.create_index_for_model(
